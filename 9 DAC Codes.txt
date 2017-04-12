@@ -1,0 +1,70 @@
+**** Triangular *****  
+
+org 0000H
+mov A,#00h
+
+begin:
+	mov p1,A
+	inc a
+	cjne a,0ffh,begin
+next: 
+	dec a
+	mov p1,a
+	cjne a,00,next
+
+	sjmp begin
+
+********** square*************
+org 0000H
+sjmp begin
+
+delay:
+	mov R5,#0FFh
+d1: 
+	djnz R5,d1
+	ret
+
+begin:
+	mov A,#0FFh
+	mov p1,A
+	lcall delay
+	mov A,#00h
+	mov p1,A
+	lcall delay
+	sjmp begin
+
+
+***********ramp***********
+org 0000H
+mov A,#00h
+
+begin:
+	mov p1,A
+	inc a
+	sjmp begin
+
+*****trapzoidal *********
+org 0000H
+sjmp begin 
+delay: 
+	mov r5,#0ffh
+d1: 	djnz r5,d1
+	ret
+
+begin: 
+	mov A,#00h
+up:  	mov p1,A
+	inc a
+	cjne a,#0ffh,up
+	lcall delay
+next: 
+	dec a
+	mov p1,a
+	cjne a,#00,next
+	lcall delay
+sjmp begin
+
+
+
+
+
